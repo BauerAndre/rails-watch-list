@@ -1,13 +1,12 @@
-<div class="container">
-<h1>Watch list</h1>
+<div class="container ml-5 pl-5">
+<h1 class="display-4 text-primary m-5"> Watch list</h1>
 
 
 
-<ul>
+
 <% @lists.each do |list| %>
 <div class="cards">
-  <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/breakfast.jpg)">
-     <li><%= link_to list.name, list_path(list) %></li>
+  <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3))", src="(http://source.unsplash.com/featured/?<%= list.name %>+movie&<%= rand(1000) %>)" alt="Card image cap">)>
+     <%= link_to list.name, list_path(list) %>
   </div>
 <% end %>
-</ul>

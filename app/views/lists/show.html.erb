@@ -1,16 +1,47 @@
-<div class="container">
-   <h1><%= @list.name %></h1>
-     <% @list.bookmarks.each do |bookmark|%>
 
-      <%= bookmark.comment %>
-      <%= bookmark.movie.title %> <br>
-      <%= image_tag bookmark.movie.poster_url %>
-      <%= link_to "🗑️", bookmark_path(bookmark), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
-    <%   end %>
-    <br>
-  <br>
-  <%=link_to "make a new bookmark", new_list_bookmark_path(@list)%>
-  <br>
-  <%=link_to "back to the list", lists_path%>
 
-</div>
+
+
+    <section class="wrapper">
+      <div class="container">
+        <div class="row">
+          <div class="col text-center mb-5">
+            <h1 class="display-4 text-primary">     <%= @list.name %>         </h1>
+            <p class="lead">- - - - - - - - - - - - - - - - - - - - - - - - - - - - -  </p>
+          </div>
+        </div>
+        <div class="d-flex gap-5">
+         <% @list.bookmarks.each do |bookmark|%>
+          <div class="col-sm-12 col-md-6 col-lg-4 mb-4 ">
+            <div class="card text-white card-has-bg click-col" style="background-image:asset-url('<%= bookmark.movie.poster_url %>');">
+              <img class="card-img d-none" src="<%= bookmark.movie.poster_url %>" alt=" <%= bookmark.movie.title %>">
+              <div class="card-img-overlay d-flex flex-column">
+                <div class="card-body">
+                  <h1 class="card-title mt-0 "><a class="text-white" herf="#"> <%= bookmark.movie.title %></a></h1>
+                </div>
+                <div class="card-footer">
+                  <div class="media">
+                    <div class="media-body">
+                      <h3 class="my-0 text-white d-block"><%= bookmark.comment %>    <%= link_to "Delete🗑️", bookmark_path(bookmark), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %></h3>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        <%   end %>
+        </div>
+             <br>
+
+      <%=link_to "make a new bookmark", new_list_bookmark_path(@list), :class => "btn" %>
+
+
+      <br>
+      <%=link_to "back to the list", lists_path, :class => "btn"%>
+    </div>
+      </div>
+    </div>
+  </div>
+</section>
